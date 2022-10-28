@@ -4,7 +4,6 @@ import { Connection } from "typeorm";
 import { app } from "../../../../app";
 
 import createConnection from "../../../../database";
-import { CreateUserError } from "./CreateUserError";
 
 let connection: Connection;
 
@@ -31,12 +30,6 @@ describe("Create User Controller: /api/v1/users", () => {
   });
 
   it("should not be able to create a user with an already registered email", async () => {
-    await request(app).post("/api/v1/users").send({
-      name: "name",
-      email: "email@email.com",
-      password: "password",
-    });
-
     const response = await request(app).post("/api/v1/users").send({
       name: "name",
       email: "email@email.com",
